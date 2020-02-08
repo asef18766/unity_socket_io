@@ -35,21 +35,22 @@ public class LoginIO : MonoBehaviour
 	# region Listen_Events
 	public void OnOpen(SocketIOEvent e)
 	{
-		Debug.Log("O" + e);
+		Debug.Log(e);
 	}
 	
 	public void OnError(SocketIOEvent e)
 	{
-		Debug.Log("E" + e);
+		Debug.Log(e);
 	}
 	
 	public void OnClose(SocketIOEvent e)
 	{
-		Debug.Log("C" + e);
+		Debug.Log(e);
 	}
 	public void OnLogined(SocketIOEvent e)
 	{
-		Debug.Log("L" + e);
+		Debug.Log(e);
+		Debug.Log("Hello, " + e.data["playerName"]);
 	}
 	# endregion
 }
