@@ -53,7 +53,7 @@ public class LoginIO : MonoBehaviour
 	{
 		Debug.Log("Login: " + e);
 		JSONObject jobj = e.data;
-		if (jobj["sucess"] == true)
+		if (jobj["success"] == true)
 		{
 			loginMenu.SetActive(false);
 			waitingRoom.SetActive(true);
