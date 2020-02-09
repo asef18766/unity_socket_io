@@ -5,6 +5,8 @@ using SocketIO;
 public class LoginIO : MonoBehaviour
 {
 	private SocketIOComponent socket;
+	[SerializeField] GameObject loginMenu;
+	[SerializeField] GameObject waitingRoom;
 
 	public void Start() 
 	{
@@ -27,7 +29,7 @@ public class LoginIO : MonoBehaviour
 	{
 		Dictionary<string , string> data = new Dictionary<string, string>();
 		data["playerName"] = name ;
-		Debug.Log("emit" + (new JSONObject(data)).ToString());
+		Debug.Log("login : " + (new JSONObject(data)).ToString());
 		socket.Emit("login" , new JSONObject(data));
 	}
 	
@@ -49,7 +51,17 @@ public class LoginIO : MonoBehaviour
 	}
 	public void OnLogined(SocketIOEvent e)
 	{
-		Debug.Log("L" + e);
+		Debug.Log("Login: " + e);
+		JSONObject jobj = e.data;
+		if (jobj["success"] == true)
+		{
+			loginMenu.SetActive(false);
+			waitingRoom.SetActive(true);
+		}
+		else
+		{
+			Debug.Log("login failed , please try another name or try again");
+		}
 	}
 	# endregion
 }
